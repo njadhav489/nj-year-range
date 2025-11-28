@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NJ Year Range Picker – Demo</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Demo page for NJ Year Range Picker – a lightweight JavaScript plugin for selecting single years or year ranges.">
+  <meta name="author" content="Nilesh">
+  <meta name="keywords" content="year picker, year range picker, javascript plugin, NJ, year selector">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="../dist/nj-year-range.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    p.sub {
+      margin-top: 0;
+      margin-bottom: 40px;
+      color: #555;
+    }
+
+    .demo-box {
+      max-width: 320px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>NJ Year Range Picker</h1>
+  <p class="sub">A lightweight JavaScript plugin to select years or year ranges</p>
+
+  <div class="demo-box">
+    <div id="yearFilter" class="year-range-picker" data-min="1900" data-max="2025"></div>
+  </div>
+
+  <script src="../dist/nj-year-range.min.js"></script>
+
+  <script>
+    initYearRangePicker("#yearFilter", {
+      onApply: (from, to) => console.log("APPLIED:", from, to),
+      onChange: (from, to) => console.log("CHANGED:", from, to),
+      onClear: () => console.log("CLEARED"),
+    });
+  </script>
+
+</body>
+</html>
