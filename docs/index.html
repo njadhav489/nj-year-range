@@ -2,70 +2,155 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>NJ Year Range Picker – Demo</title>
 
-  <!-- SEO Meta -->
-  <meta name="description" content="Demo page for NJ Year Range Picker – a lightweight JavaScript plugin for selecting single years or year ranges.">
-  <meta name="author" content="Nilesh">
-  <meta name="keywords" content="year picker, year range picker, javascript plugin, NJ, year selector">
+  <meta name="description"
+        content="Demo for NJ Year Range Picker - lightweight, dependency-free JavaScript plugin for selecting single years or year ranges." />
 
-  <!-- Style -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/njadhav489/nj-year-range/dist/nj-year-range.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/njadhav489/nj-year-range/dist/nj-year-range.min.css" />
 
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f9;
       margin: 0;
-      padding: 40px 20px;
+      padding: 30px 20px;
       text-align: center;
     }
 
     h1 {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       font-weight: 600;
-      color: #333;
+      color: #222;
     }
 
     p.sub {
       margin-top: 0;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: #555;
     }
 
-    .demo-box {
-      max-width: 320px;
+    .container {
+      max-width: 600px;
       margin: 0 auto;
+    }
+
+    .block {
       background: #fff;
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      margin-bottom: 35px;
+      text-align: left;
+    }
+
+    .block h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .version-select {
+      margin: 20px auto 30px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    /* GitHub Ribbon */
+    .github-fork-ribbon {
+      width: 150px;
+      height: 150px;
+      background: #151513;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      right: 0;
+      text-decoration: none;
+      text-align: center;
+      font: bold 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      padding: 40px 0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     }
   </style>
 </head>
 
 <body>
 
-  <h1>NJ Year Range Picker</h1>
-  <p class="sub">A lightweight JavaScript plugin to select years or year ranges</p>
+  <!-- GitHub Ribbon -->
+  <a class="github-fork-ribbon"
+     href="https://github.com/njadhav489/nj-year-range"
+     target="_blank">
+     Fork me on GitHub
+  </a>
 
-  <div class="demo-box">
-    <div id="yearFilter" class="year-range-picker" data-min="1900" data-max="2025"></div>
+  <h1>NJ Year Range Picker</h1>
+  <p class="sub">Lightweight JavaScript plugin to pick years or year ranges</p>
+
+  <div class="container">
+
+    <!-- Example 1 -->
+    <div class="block">
+      <h3>Default Year Range Picker</h3>
+      <div id="picker1" class="year-range-picker"
+           data-min="1900"
+           data-max="2025"></div>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="block">
+      <h3>Picker with Custom Min/Max</h3>
+      <div id="picker2" class="year-range-picker"
+           data-min="2000"
+           data-max="2050"></div>
+    </div>
+
+    <!-- Example 3 -->
+    <div class="block">
+      <h3>Picker with Event Logging</h3>
+      <div id="picker3" class="year-range-picker"
+           data-min="1980"
+           data-max="2030"></div>
+
+      <pre id="eventLog"
+           style="background:#222;color:#0f0;padding:10px;border-radius:6px;margin-top:15px;max-height:120px;overflow:auto;">
+      </pre>
+    </div>
+
   </div>
 
+  <!-- JS -->
   <script src="https://cdn.jsdelivr.net/gh/njadhav489/nj-year-range/dist/nj-year-range.min.js"></script>
 
   <script>
-    initYearRangePicker("#yearFilter", {
-      onApply: (from, to) => console.log("APPLIED:", from, to),
-      onChange: (from, to) => console.log("CHANGED:", from, to),
-      onClear: () => console.log("CLEARED"),
+ 
+    /* -------------------------------
+       Init Pickers
+    -------------------------------- */
+    initYearRangePicker("#picker1");
+
+    initYearRangePicker("#picker2");
+
+    const logBox = document.getElementById("eventLog");
+
+    initYearRangePicker("#picker3", {
+      onApply: (from, to) => log("APPLY: " + from + " - " + to),
+      onChange: (from, to) => log("CHANGE: " + from + " - " + to),
+      onClear: () => log("CLEARED")
     });
+
+    function log(msg) {
+      logBox.textContent += msg + "\n";
+      logBox.scrollTop = logBox.scrollHeight;
+    }
   </script>
 
 </body>
 </html>
-
